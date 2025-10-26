@@ -1,5 +1,11 @@
-# Pronic ERP Demo Paneli
+> ## 🚀 Projeyi Canlı İnceleyin!
+>
+> **[https://aydinalpburkay.pythonanywhere.com/](https://aydinalpburkay.pythonanywhere.com/)**
+>
+> (Giriş Parolası: `pronic123`)
 
+---
+# Pronic ERP Demo Paneli
 Bu proje, Pronic Yazılım'daki staj süresince geliştirilmiş, Python (Flask), SQLite ve Matplotlib kullanan bir web tabanlı ERP (Kurumsal Kaynak Planlama) konsept demo panelidir.
 
 ## Proje Hikayesi ve Amacı
@@ -117,4 +123,5 @@ Bu akış, bir müşterinin durumunun `UPDATE` komutuyla nasıl yönetildiğini 
 
 **3. Adım (Kanıt): Pasif Müşteriye Satış Engeli**
 ![Satışta Görünmez](gorseller/16-satis-listesinde-yok.png)
+
 *(Açıklama: 'Yeni Satış Ekle' sayfasına gidildiğinde, 'Müşteri Seçin' dropdown listesinde 'Aspilsan' firması artık görünmez, böylece pasif müşteriye satış yapılması engellenir.)*
