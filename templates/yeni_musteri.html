@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Yeni Müşteri Kaydı - Pronic ERP{% endblock %}
+{% block content %}
+    <h1><i class="fas fa-user-plus page-icon"></i> Yeni Müşteri Kaydı Ekleme</h1>
+    <p>Bu form aracılığıyla sisteme yeni bir müşteri (cari kart) ekleyebilirsiniz.</p>
+    <form action="/kaydet-musteri" method="POST" class="form-section">
+        <h2>Müşteri Bilgileri</h2>
+        <div class="form-grid"><div class="form-grup"><label for="musteri_kodu" class="required">Müşteri Kodu:</label><input type="text" name="musteri_kodu" id="musteri_kodu" placeholder="Benzersiz olmalı, örn: M-YENI01" required></div><div class="form-grup"><label for="firma_unvani" class="required">Firma Ünvanı:</label><input type="text" name="firma_unvani" id="firma_unvani" placeholder="örn: Yeni Deneme A.Ş." required></div></div>
+         <div class="form-grid"><div class="form-grup"><label for="sehir">Şehir:</label><input type="text" name="sehir" id="sehir" placeholder="örn: İstanbul"></div><div class="form-grup"><label for="sektor">Sektör:</label><input type="text" name="sektor" id="sektor" placeholder="örn: İnşaat"></div></div>
+        <div class="form-actions"><button type="submit" class="btn btn-success"><i class="fas fa-save icon"></i>Müşteriyi Kaydet</button></div>
+    </form>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Stok Raporu - Pronic ERP{% endblock %}
+{% block content %}
+    <h1><i class="fas fa-boxes page-icon"></i> Kritik Stok Durum Raporu</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Durum</th><th>Ürün Kodu</th><th>Ürün Adı</th>
+                <th class="text-right">Mevcut Stok</th><th class="text-right">Kritik Stok</th>
+                <th class="text-right">Maliyet Fiyatı (TL)</th><th class="text-right">Birim Fiyatı (TL)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for urun in urunler %}
+            <tr>
+                <td> {% if urun['MevcutStok'] <= 0 %}<span class="badge badge-danger">Stok Yok</span> {% elif urun['MevcutStok'] <= urun['KritikStok'] %}<span class="badge badge-warning">Kritik Stok</span> {% else %}<span class="badge badge-success">Stok Mevcut</span> {% endif %} </td>
+                <td>{{ urun['UrunKodu'] }}</td><td>{{ urun['UrunAdi'] }}</td>
+                <td class="text-right">{{ urun['MevcutStok'] }}</td><td class="text-right">{{ urun['KritikStok'] }}</td>
+                <td class="text-right">{{ urun['MaliyetFiyati'] | tr_para }}</td><td class="text-right">{{ urun['BirimFiyati'] | tr_para }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p class="total-count">Toplam {{ urunler | length }} adet ürün listelendi.</p>
+{% endblock %}

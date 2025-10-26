@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Satış Onayı - Pronic ERP{% endblock %}
+{% block content %}
+    <h1><i class="fas fa-check-circle page-icon" style="color:#2ecc71;"></i> Lütfen Satış Bilgilerini Onaylayın</h1>
+    <div class="form-section"> <h2>Satış Özeti</h2>
+        <p><strong>Tarih:</strong> {{ satis_ozeti['tarih'] }}</p>
+        <p><strong>Müşteri:</strong> {{ satis_ozeti['musteri_unvani'] }} ({{ satis_ozeti['musteri_kodu'] }})</p>
+        <p><strong>Ürün:</strong> {{ satis_ozeti['urun_adi'] }} ({{ satis_ozeti['urun_kodu'] }})</p>
+        <p><strong>Miktar:</strong> {{ satis_ozeti['miktar'] }}</p>
+        <p><strong>Birim Fiyat:</strong> {{ satis_ozeti['birim_fiyat'] | tr_para }} TL</p>
+        <p><strong>Ödeme Durumu:</strong> {{ satis_ozeti['odeme_durumu'] }}</p><hr>
+        <p><strong>TOPLAM TUTAR: {{ satis_ozeti['tutar'] | tr_para }} TL</strong></p>
+    </div>
+    <form action="/gerceklestir-satis" method="POST" class="form-actions" style="border-top: none; padding-top: 0;"> <input type="hidden" name="musteri_kodu" value="{{ satis_ozeti['musteri_kodu'] }}">
+        <input type="hidden" name="urun_kodu" value="{{ satis_ozeti['urun_kodu'] }}">
+        <input type="hidden" name="satis_miktari" value="{{ satis_ozeti['miktar'] }}">
+        <input type="hidden" name="odeme_durumu" value="{{ satis_ozeti['odeme_durumu'] }}">
+
+        <a href="{{ url_for('satis_ekle_sayfasi_GET') }}" class="btn btn-danger" style="margin-right: 10px;"> <i class="fas fa-times icon"></i>İptal Et
+        </a>
+        <button type="submit" class="btn btn-success">
+            <i class="fas fa-check icon"></i>Satışı Onayla ve Kaydet
+        </button>
+    </form>
+{% endblock %}

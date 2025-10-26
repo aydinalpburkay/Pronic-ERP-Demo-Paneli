@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Yeni Satış Kaydı - Pronic ERP{% endblock %}
+{% block content %}
+    <h1><i class="fas fa-cart-plus page-icon"></i> Yeni Satış Kaydı Ekleme</h1>
+    <p>Bu form aracılığıyla sisteme yeni bir satış hareketi ekleyebilirsiniz.</p>
+    <form action="/onayla-satis" method="POST" class="form-section">
+        <h2>Satış Bilgileri</h2>
+        <div class="form-grup"><label for="musteri_kodu" class="required">Müşteri Seçin:</label><select name="musteri_kodu" id="musteri_kodu" required><option value="">--- Lütfen bir müşteri seçin ---</option>{% for musteri in musteriler %}<option value="{{ musteri['MusteriKodu'] }}">{{ musteri['FirmaUnvani'] }} ({{ musteri['Sehir'] }})</option>{% endfor %}</select></div>
+        <div class="form-grup"><label for="urun_kodu" class="required">Ürün Seçin:</label><select name="urun_kodu" id="urun_kodu" required><option value="">--- Lütfen bir ürün seçin ---</option>{% for urun in urunler %}<option value="{{ urun['UrunKodu'] }}">{{ urun['UrunAdi'] }} (Stok: {{ urun['MevcutStok'] }}, Fiyat: {{ urun['BirimFiyati'] | tr_para }} TL)</option>{% endfor %}</select></div>
+        <div class="form-grid"><div class="form-grup"><label for="satis_miktari" class="required">Satış Miktarı:</label><input type="number" name="satis_miktari" id="satis_miktari" min="1" step="any" placeholder="örn: 50" required></div><div class="form-grup"><label for="odeme_durumu">Ödeme Durumu:</label><select name="odeme_durumu" id="odeme_durumu"><option value="Ödendi">Ödendi</option><option value="Bekleniyor">Bekleniyor</option><option value="Vadesi Geçti">Vadesi Geçti</option></select></div></div>
+        <div class="form-actions"><button type="submit" class="btn btn-primary"><i class="fas fa-arrow-right icon"></i>Özeti Gör ve Onayla</button></div>
+    </form>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Yeni Ürün Kaydı - Pronic ERP{% endblock %}
+{% block content %}
+    <h1><i class="fas fa-tag page-icon"></i> Yeni Ürün Kaydı Ekleme</h1>
+    <p>Bu form aracılığıyla sisteme yeni bir ürün (stok kartı) ekleyebilirsiniz.</p>
+    <form action="/kaydet-urun" method="POST" class="form-section">
+        <h2>Ürün Bilgileri</h2>
+        <h3>Temel Bilgiler</h3>
+        <div class="form-grid"><div class="form-grup"><label for="urun_kodu" class="required">Ürün Kodu:</label><input type="text" name="urun_kodu" id="urun_kodu" placeholder="Benzersiz olmalı, örn: YENI-001" required></div><div class="form-grup"><label for="urun_adi" class="required">Ürün Adı:</label><input type="text" name="urun_adi" id="urun_adi" placeholder="örn: Yeni Menteşe Tipi Z" required></div></div>
+        <div class="form-grup"><label for="urun_turu">Ürün Türü/Kategorisi:</label><input type="text" name="urun_turu" id="urun_turu" placeholder="örn: Mobilya Aksesuar"></div>
+        <h3>Fiyat Bilgileri</h3>
+        <div class="form-grid"><div class="form-grup"><label for="maliyet_fiyati" class="required">Maliyet Fiyatı (TL):</label><input type="number" name="maliyet_fiyati" id="maliyet_fiyati" min="0" step="any" placeholder="örn: 25.50" required></div><div class="form-grup"><label for="birim_fiyati" class="required">Birim Fiyatı (TL):</label><input type="number" name="birim_fiyati" id="birim_fiyati" min="0" step="any" placeholder="örn: 40.00" required></div></div>
+        <h3>Stok Bilgileri</h3>
+        <div class="form-grid"><div class="form-grup"><label for="mevcut_stok" class="required">Başlangıç Stok Miktarı:</label><input type="number" name="mevcut_stok" id="mevcut_stok" min="0" step="any" placeholder="örn: 1000" required></div><div class="form-grup"><label for="kritik_stok" class="required">Kritik Stok Seviyesi:</label><input type="number" name="kritik_stok" id="kritik_stok" min="0" step="any" placeholder="örn: 50" required></div></div>
+        <div class="form-actions"><button type="submit" class="btn btn-success"><i class="fas fa-save icon"></i>Ürünü Kaydet</button></div>
+    </form>
+{% endblock %}

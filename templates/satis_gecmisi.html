@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Satış Geçmişi Raporu - Pronic ERP{% endblock %}
+{% block content %}
+    <h1><i class="fas fa-history page-icon"></i> Satış Hareketleri Geçmişi</h1>
+    <p>Sistemde kayıtlı tüm satış işlemleri aşağıda listelenmiştir.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Satış Kodu</th><th>Tarih</th><th>Müşteri Ünvanı</th><th>Ürün Adı</th>
+                <th class="text-right">Miktar</th><th class="text-right">Birim Fiyat (TL)</th>
+                <th class="text-right">Tutar (TL)</th><th>Kanal</th><th>Ödeme Durumu</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for satis in satislar %}
+            <tr>
+                <td>{{ satis['SatisKodu'] }}</td><td>{{ satis['Tarih'] }}</td><td>{{ satis['FirmaUnvani'] }}</td><td>{{ satis['UrunAdi'] }}</td>
+                <td class="text-right">{{ satis['SatisMiktari'] }}</td><td class="text-right">{{ satis['BirimFiyati'] | tr_para }}</td>
+                <td class="text-right">{{ satis['Tutar'] | tr_para }}</td><td>{{ satis['SatisKanali'] }}</td>
+                <td> {% if satis['OdemeDurumu'] == 'Ödendi' %}<span class="badge badge-success">Ödendi</span> {% elif satis['OdemeDurumu'] == 'Bekleniyor' %}<span class="badge badge-warning">Bekleniyor</span> {% elif satis['OdemeDurumu'] == 'Vadesi Geçti' %}<span class="badge badge-danger">Vadesi Geçti</span> {% else %}<span class="badge badge-secondary">{{ satis['OdemeDurumu'] }}</span> {% endif %} </td>
+            </tr>
+            {% else %}<tr><td colspan="9" style="text-align: center;">Gösterilecek satış kaydı bulunamadı.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p class="total-count">Toplam {{ satislar | length }} adet satış kaydı listelendi.</p>
+{% endblock %}

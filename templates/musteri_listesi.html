@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Müşteri Listesi - Pronic ERP{% endblock %}
+{% block content %}
+    <h1><i class="fas fa-users page-icon"></i> Müşteri Yönetim Listesi</h1>
+    <p>Sistemde kayıtlı tüm müşteriler ve aktiflik durumları aşağıdadır.</p>
+    <table>
+        <thead><tr><th>Müşteri Kodu</th><th>Firma Ünvanı</th><th>Şehir</th><th>Sektör</th><th>Durum</th><th>İşlem</th></tr></thead>
+        <tbody>
+            {% for musteri in musteriler %}
+            <tr>
+                <td>
+                    <i class="sektor-icon {{ musteri.Sektor | sektor_ikonu }}" title="{{ musteri.Sektor or 'Diğer' }}"></i>
+                    {{ musteri['MusteriKodu'] }}
+                </td>
+                <td>{{ musteri['FirmaUnvani'] }}</td>
+                <td>{{ musteri['Sehir'] }}</td>
+                <td>{{ musteri['Sektor'] }}</td>
+                <td> {% if musteri['AktifMi'] == 1 %}<span class="badge badge-success">Aktif</span> {% else %}<span class="badge badge-danger">Pasif</span> {% endif %} </td>
+                <td> <a href="{{ url_for('musteri_durum_degistir', musteri_kodu=musteri['MusteriKodu']) }}" class="btn-status-toggle {% if musteri['AktifMi'] == 1 %}btn-pasif-al{% else %}btn-aktif-et{% endif %}" onclick="return confirm('Müşterinin durumunu değiştirmek istediğinizden emin misiniz?');"> {% if musteri['AktifMi'] == 1 %}Pasife Al{% else %}Aktif Et{% endif %} </a> </td>
+            </tr>
+            {% else %}<tr><td colspan="6" style="text-align: center;">Gösterilecek müşteri kaydı bulunamadı.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p class="total-count">Toplam {{ musteriler | length }} adet müşteri listelendi.</p>
+{% endblock %}

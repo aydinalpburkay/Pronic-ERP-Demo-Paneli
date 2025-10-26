@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Kârlılık Raporu - Pronic ERP{% endblock %}
+{% block content %}
+    <h1><i class="fas fa-chart-pie page-icon"></i> Müşteri Bazlı Kârlılık Raporu</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Müşteri Kodu</th>
+                <th>Firma Ünvanı</th>
+                <th class="text-right">Toplam Ciro (TL)</th>
+                <th class="text-right">Toplam Kâr (TL)</th>
+                <th class="text-right">Kâr Marjı (%)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for musteri in musteri_verileri %}
+            <tr>
+                <td>
+                    <i class="sektor-icon {{ musteri.Sektor | sektor_ikonu }}" title="{{ musteri.Sektor or 'Diğer' }}"></i>
+                    {{ musteri['MusteriKodu'] }}
+                </td>
+                <td>{{ musteri['FirmaUnvani'] }}</td>
+                <td class="text-right">{{ musteri['ToplamCiro'] | tr_para }}</td>
+                <td class="text-right">{{ musteri['ToplamKar'] | tr_para }}</td>
+                <td class="text-right">{{ musteri['KarMarjiYuzde'] | tr_para }}%</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p class="total-count">Toplam {{ musteri_verileri | length }} adet müşteri listelendi.</p>
+{% endblock %}
